@@ -357,23 +357,23 @@ def contract_page():
     st.session_state.activities = st.text_area("", placeholder="Ejemplo: Jugar a la pelota, pintar, leer cuentos, etc.")
 
     if st.button("Confirmar contratación"):
-    if not st.session_state.service_zone or not st.session_state.selected_dates:
-        st.error("Por favor, completa todos los campos antes de confirmar.")
-    else:
+        if not st.session_state.service_zone or not st.session_state.selected_dates:
+            st.error("Por favor, completa todos los campos antes de confirmar.")
+        else:
         # Datos a guardar en Google Sheets
-        data = [
-            st.session_state.phone,
-            st.session_state.service_zone,
-            ", ".join([format_date(d) for d in st.session_state.selected_dates]),
-            f"{st.session_state.start_time.strftime('%I:%M %p')} - {st.session_state.end_time.strftime('%I:%M %p')}",
-            st.session_state.allergies,
-            st.session_state.activities
-        ]
+            data = [
+                st.session_state.phone,
+                st.session_state.service_zone,
+                ", ".join([format_date(d) for d in st.session_state.selected_dates]),
+                f"{st.session_state.start_time.strftime('%I:%M %p')} - {st.session_state.end_time.strftime('%I:%M %p')}",
+                st.session_state.allergies,
+                st.session_state.activities
+            ]
         # Llamar a la función para guardar en Google Sheets
-        save_to_google_sheets(data)
+            save_to_google_sheets(data)
 
         # Mostrar mensaje de éxito
-        st.success("¡Servicio contratado exitosamente! Nos pondremos en contacto contigo.")
+            st.success("¡Servicio contratado exitosamente! Nos pondremos en contacto contigo.")
 
 
             pdf = generate_pdf()
