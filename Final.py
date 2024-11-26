@@ -2,8 +2,6 @@ import streamlit as st
 import base64
 from datetime import date, datetime, time, timedelta
 from fpdf import FPDF  # Librería para generar PDF
-import gspread
-from oauth2client.service_account import ServiceAccountCredentials
 
 # Configurar el diseño de la página
 st.set_page_config(page_title="Calculadora de Kahu Nanny", page_icon=":baby:")
@@ -358,26 +356,14 @@ def contract_page():
 
     if st.button("Confirmar contratación"):
         if not st.session_state.service_zone or not st.session_state.selected_dates:
-            st.error("Por favor, completa todos los campos antes de confirmar.")
+            st.error("¡Parece que algo falta! Por favor, completa todos los detalles del servicio. ¡Queremos asegurarnos de que todo sea perfecto! 🍼.")
         else:
-        # Datos a guardar en Google Sheets
-            data = [
-                st.session_state.phone,
-                st.session_state.service_zone,
-                ", ".join([format_date(d) for d in st.session_state.selected_dates]),
-                f"{st.session_state.start_time.strftime('%I:%M %p')} - {st.session_state.end_time.strftime('%I:%M %p')}",
-                st.session_state.allergies,
-                st.session_state.activities
-            ]
-        # Llamar a la función para guardar en Google Sheets
-            save_to_google_sheets(data)
-
-        # Mostrar mensaje de éxito
-            st.success("¡Servicio contratado exitosamente! Nos pondremos en contacto contigo.")
+            st.success("¡Servicio contratado exitosamente! Nos pondremos en contacto contigo.🎉")
 
 
             pdf = generate_pdf()
             pdf.output("Resumen_del_Servicio.pdf")
+
 
             # Botón para descargar el PDF
             with open("Resumen_del_Servicio.pdf", "rb") as pdf_file:
@@ -390,8 +376,12 @@ def contract_page():
                 )
 
 
+
+
     if st.button("Regresar a la calculadora"):
         st.session_state.page = 'calculator'
+
+
 
 
 # Navegación entre páginas
@@ -399,4 +389,5 @@ if st.session_state.page == 'calculator':
     calculator_page()
 elif st.session_state.page == 'contract':
     contract_page()
+
 
