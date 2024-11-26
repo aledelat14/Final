@@ -358,7 +358,7 @@ def contract_page():
         if not st.session_state.service_zone or not st.session_state.selected_dates:
             st.error("¡Parece que algo falta! Por favor, completa todos los detalles del servicio. ¡Queremos asegurarnos de que todo sea perfecto! 🍼.")
         else:
-            st.success("¡Servicio contratado exitosamente! Nos pondremos en contacto contigo.🎉")
+            st.success("¡Servicio contratado exitosamente! Por favor ponte en contacto con nosotros.🎉")
 
 
             pdf = generate_pdf()
