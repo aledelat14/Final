@@ -291,6 +291,10 @@ def calculator_page():
 def contract_page():
     show_header()
     st.title("Formulario de Contratación")
+
+    # Preguntar por el número de teléfono
+    st.markdown("### **Número de teléfono:**")
+    st.session_state.phone = st.text_input("Ingresa tu número de contacto:")
    
     # Campos dinámicos para las edades de los niños
     st.markdown("#### **Edades de tus peques:**")
