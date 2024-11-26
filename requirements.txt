@@ -1,5 +1,7 @@
 streamlit
 
+fpdf
+
 pandas
 
 yfinance
