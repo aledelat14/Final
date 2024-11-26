@@ -9,3 +9,7 @@ yfinance
 matplotlib
 
 numpy
+
+gspread
+
+oauth2client
