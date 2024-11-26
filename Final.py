@@ -2,6 +2,8 @@ import streamlit as st
 import base64
 from datetime import date, datetime, time, timedelta
 from fpdf import FPDF  # Librería para generar PDF
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
 
 # Configurar el diseño de la página
 st.set_page_config(page_title="Calculadora de Kahu Nanny", page_icon=":baby:")
@@ -182,6 +184,21 @@ def generate_pdf():
     pdf.cell(0, 10, "+52 33 2801 4649", ln=True,)
     return pdf
 
+# Configurar acceso a Google Sheets
+def save_to_google_sheets(data):
+    # Define el alcance de las APIs (Sheets y Drive)
+    scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+    
+    # Autenticación con el archivo credentials.json
+    creds = ServiceAccountCredentials.from_json_keyfile_name("credentials.json", scope)
+    client = gspread.authorize(creds)
+
+    # Abre el Google Sheet por su ID
+    sheet = client.open_by_key("1UAXDH1DLpv54dXTGOYcgah3j30Xnk3QCpVdgNFl911E")  # Reemplaza con el ID de tu hoja
+    worksheet = sheet.sheet1  # Usa la primera hoja del archivo
+
+    # Agrega los datos como una nueva fila
+    worksheet.append_row(data)
 
 
 # Página de calculadora
@@ -340,10 +357,24 @@ def contract_page():
     st.session_state.activities = st.text_area("", placeholder="Ejemplo: Jugar a la pelota, pintar, leer cuentos, etc.")
 
     if st.button("Confirmar contratación"):
-        if not st.session_state.service_zone or not st.session_state.selected_dates:
-            st.error("¡Parece que algo falta! Por favor, completa todos los detalles del servicio. ¡Queremos asegurarnos de que todo sea perfecto! 🍼.")
-        else:
-            st.success("¡Servicio contratado exitosamente! Nos pondremos en contacto contigo.🎉")
+    if not st.session_state.service_zone or not st.session_state.selected_dates:
+        st.error("Por favor, completa todos los campos antes de confirmar.")
+    else:
+        # Datos a guardar en Google Sheets
+        data = [
+            st.session_state.phone,
+            st.session_state.service_zone,
+            ", ".join([format_date(d) for d in st.session_state.selected_dates]),
+            f"{st.session_state.start_time.strftime('%I:%M %p')} - {st.session_state.end_time.strftime('%I:%M %p')}",
+            st.session_state.allergies,
+            st.session_state.activities
+        ]
+        # Llamar a la función para guardar en Google Sheets
+        save_to_google_sheets(data)
+
+        # Mostrar mensaje de éxito
+        st.success("¡Servicio contratado exitosamente! Nos pondremos en contacto contigo.")
+
 
             pdf = generate_pdf()
             pdf.output("Resumen_del_Servicio.pdf")
