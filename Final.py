@@ -209,11 +209,26 @@ def calculator_page():
     st.markdown("#### **Tu nombre completo:**")
     name = st.text_input("")
     
+    # Inicializar el estado para weeks si no existe
+    if 'weeks' not in st.session_state:
+        st.session_state.weeks = 3
+
+    # Entrada del tipo de servicio
     st.markdown("#### **Tipo de servicio que buscas:**")
     service_type = st.radio("", ["Fijo", "Esporádico"]).lower()
-    
+
+    # Configurar semanas según el tipo de servicio
     st.markdown("#### **¿Por cuántas semanas necesitas el servicio?**")
-    weeks = st.number_input("", min_value=3, step=1)
+    if service_type == "fijo":
+        st.session_state.weeks = st.number_input(
+            "", min_value=3, value=st.session_state.weeks, step=1, help="El servicio fijo requiere al menos 3 semanas 😊"
+    )
+    else:
+        st.session_state.weeks = st.number_input(
+            "", min_value=1, value=1, step=1, help="Puedes elegir desde 1 semana"
+    )
+
+weeks = st.session_state.weeks
     
     st.markdown("#### **Selecciona los días:**")
     days_selected = st.multiselect(
