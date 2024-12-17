@@ -4,7 +4,7 @@ from datetime import date, datetime, time, timedelta
 from fpdf import FPDF  # Librería para generar PDF
 
 # Configurar el diseño de la página
-st.set_page_config(page_title="Calculadora de Kahu Nanny", page_icon=":baby:")
+st.set_page_config(page_title="Calculadora de Kahu Nanny")
 
 # Variables para manejar el estado de la aplicación
 if 'page' not in st.session_state:
