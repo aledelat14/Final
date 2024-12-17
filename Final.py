@@ -50,18 +50,6 @@ def load_logo(file_path):
 logo_path = "Copy of Logo Kahu (3).png"
 logo_base64 = load_logo(logo_path)
 
-# Cambiar el fondo de toda la página
-st.markdown(
-    """
-    <style>
-    body {
-        background-color: #f9f9f9;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
-
 # Encabezado con el logo más grande y lema
 def show_header():
     st.markdown(
