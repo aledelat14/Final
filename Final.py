@@ -363,7 +363,6 @@ def contract_page():
             pdf = generate_pdf()
             pdf.output("Resumen_del_Servicio.pdf")
 
-
             # Botón para descargar el PDF
             with open("Resumen_del_Servicio.pdf", "rb") as pdf_file:
                 pdf_data = pdf_file.read()
@@ -374,7 +373,7 @@ def contract_page():
                     mime="application/pdf"
                 )
 
-    # Mostrar botón de WhatsApp al final
+    # Mostrar botón de WhatsApp después de confirmar
         st.markdown(
             f"""
             <div style="text-align: center; margin-top: 20px;">
@@ -393,7 +392,6 @@ def contract_page():
             """,
             unsafe_allow_html=True
         )
-
 
 
     if st.button("Regresar a la calculadora"):
