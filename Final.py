@@ -54,7 +54,6 @@ logo_base64 = load_logo(logo_path)
 def show_header():
     st.markdown(
         f"""
-        <div style="background-color: #f9f9f9; padding: 20px; border-radius: 10px; text-align: center;">
             <img src="data:image/png;base64,{logo_base64}" alt="Kahu Nanny Logo" style="height: 150px; margin-bottom: 10px;">
             <p style="color: #4a4a4a; font-family: Arial, sans-serif; font-size: 18px; margin-top: 10px;">
                 Tu tranquilidad, nuestra prioridad.
