@@ -212,6 +212,13 @@ def calculator_page():
     st.markdown("#### **Tipo de servicio que buscas:**")
     service_type = st.radio("", ["Fijo", "Esporádico"]).lower()
     
+    # Entrada de semanas con preselección automática y límite mínimo de 3 semanas para servicios fijos
+if service_type == "fijo":
+    st.markdown("#### **¿Por cuántas semanas necesitas el servicio?**")
+    weeks = st.number_input(
+        "", min_value=3, value=3, step=1, help="El servicio fijo requiere al menos 3 semanas. 😊"
+    )
+else:
     st.markdown("#### **¿Por cuántas semanas necesitas el servicio?**")
     weeks = st.number_input("", min_value=1, step=1)
     
