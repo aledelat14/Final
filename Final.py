@@ -358,8 +358,7 @@ def contract_page():
         if not st.session_state.service_zone or not st.session_state.selected_dates:
             st.error("¡Parece que algo falta! Por favor, completa todos los detalles del servicio. ¡Queremos asegurarnos de que todo sea perfecto! 🍼.")
         else:
-            st.success("¡Servicio contratado exitosamente! Por favor ponte en contacto con nosotros.🎉")
-
+            st.success("¡Servicio contratado exitosamente! Por favor manda el pdf y te mandaremos los perfiles disponibles.🎉")
 
             pdf = generate_pdf()
             pdf.output("Resumen_del_Servicio.pdf")
@@ -375,6 +374,25 @@ def contract_page():
                     mime="application/pdf"
                 )
 
+    # Mostrar botón de WhatsApp al final
+        st.markdown(
+            f"""
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="https://wa.me/message/VY3PH5AELJ3BE1" target="_blank" style="
+                    display: inline-block; 
+                    background-color: #25D366; 
+                    color: white; 
+                    padding: 10px 20px; 
+                    border-radius: 5px; 
+                    text-decoration: none; 
+                    font-family: Arial, sans-serif;
+                    font-size: 16px;">
+                    📱 Contáctanos por WhatsApp
+                </a>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
 
 
 
