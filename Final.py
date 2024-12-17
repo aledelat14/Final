@@ -213,7 +213,7 @@ def calculator_page():
     service_type = st.radio("", ["Fijo", "Esporádico"]).lower()
     
     st.markdown("#### **¿Por cuántas semanas necesitas el servicio?**")
-    weeks = st.number_input("", min_value=3, step=1)
+    weeks = st.number_input("", min_value=1, step=1)
     
     st.markdown("#### **Selecciona los días:**")
     days_selected = st.multiselect(
