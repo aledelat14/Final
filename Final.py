@@ -224,17 +224,17 @@ def calculator_page():
     # Configurar semanas según el tipo de servicio
     st.markdown("#### **¿Por cuántas semanas necesitas el servicio?**")
     if service_type == "fijo":
-        st.session_state.weeks = st.number_input(
+        weeks = st.number_input(
             "", min_value=3, value=st.session_state.weeks, step=1, help="El servicio fijo requiere al menos 3 semanas 😊"
-    )
-   else:
-    weeks = st.number_input(
-        "", min_value=1, value=st.session_state.weeks if st.session_state.weeks > 1 else 1, step=1, help="Puedes elegir desde 1 semana"
-    )
+        )
+    else:
+        weeks = st.number_input(
+            "", min_value=1, value=st.session_state.weeks if st.session_state.weeks > 1 else 1, step=1, help="Puedes elegir desde 1 semana"
+        )
 
     # Actualizar el estado de weeks
     st.session_state.weeks = weeks
-    
+
     st.markdown("#### **Selecciona los días:**")
     days_selected = st.multiselect(
         "",
