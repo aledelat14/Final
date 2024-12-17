@@ -59,10 +59,22 @@ def show_header():
             <p style="color: #4a4a4a; font-family: Arial, sans-serif; font-size: 18px; margin-top: 10px;">
                 Tu tranquilidad, nuestra prioridad.
             </p>
+            <a href="https://wa.me/message/VY3PH5AELJ3BE1" target="_blank" style="
+                display: inline-block; 
+                background-color: #25D366; 
+                color: white; 
+                padding: 10px 20px; 
+                border-radius: 5px; 
+                text-decoration: none; 
+                font-family: Arial, sans-serif;
+                font-size: 16px;">
+                📱 Contáctanos por WhatsApp
+            </a>
         </div>
         """,
         unsafe_allow_html=True,
     )
+
 
 # Traducción manual de días y meses al español
 DAYS_ES = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
