@@ -228,7 +228,7 @@ def calculator_page():
             "", min_value=1, value=1, step=1, help="Puedes elegir desde 1 semana"
     )
 
-weeks = st.session_state.weeks
+    weeks = st.session_state.weeks
     
     st.markdown("#### **Selecciona los días:**")
     days_selected = st.multiselect(
